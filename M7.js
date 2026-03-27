@@ -55,14 +55,73 @@ new Curso("Curso profesional de JavaScript")
 // ------------ MODULO 7: CLASE 5 ------------
 class Human{
     especie = "Humano"
+    constructor(name){
+        this.name = name
+    }
+    
+    respirar(){
+        console.log("Inhala");
+    }
+
+    saludar(){
+        console.log("Hola humano")
+    }
 }
 
-class Admin extends Human{}
+class Admin extends Human{
+    constructor(name){
+        super(name)
+    }
+    
+    saludar(){
+        super.saludar()
+        console.log("Hola, soy admin")
+    }
+}
 
-let admin = new Admin()
+let admin = new Admin() 
 console.log(admin.especie)
+admin.respirar()
+admin.saludar
+
+// Tambien se puede hacer herencia con funciones
 
 // ------------ MODULO 7: CLASE 6 ------------
+class User{
+    get nombre(){
+        return this._nombre
+    }
 
+    set nombre(nombre){
+        if(typeof nombre !== "string") throw new Error("No es una cadena")
+
+        this._nombre = nombre
+    }
+    
+}
+
+let user = new User()
+user.nombre = "Cody" // setter
+console.log(user.nombre) // getter
 
 // ------------ MODULO 7: CLASE 7 ------------
+/* 
+    ¿Cuando usar funciones/propiedades estaticas?
+
+    Propiedades: almacenar configuración fija
+
+    Funciones: fucniones de utilidad, consturcción persononalizada de objetos
+*/
+
+class Api{
+    static ENDPOINT = "localhost:3000"
+
+
+    static get(){
+        console.log("Método estático")
+    }
+}
+
+Api.get()
+
+console.log(Api.ENDPOINT)
